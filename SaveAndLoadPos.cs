@@ -12,7 +12,7 @@ namespace SmolTAS
         public bool isSaveAndLoadPosOn;
 
         // Field for storing player position
-        private Vector3 savedPlayerPosition;
+        private Vector3 savedPlayerPosition = Vector3.zero;
 
         // Constructor for this class
         public SaveAndLoadPos(bool isSaveAndLoadPosOn)
