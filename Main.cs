@@ -139,7 +139,6 @@ namespace SmolTAS
             if (inputObject.keyCode == KeyCode.E && isSlowMoOn && SALT.Timer.IsPaused() && !MainScript.paused)
             {
                 Time.timeScale = slowMo.valueForTimeScale;
-                SALT.Console.Console.Log("E was pressed");
             }
             // Slow Mo class end
 
@@ -163,7 +162,6 @@ namespace SmolTAS
             if (inputObject.keyCode == KeyCode.E && isSlowMoOn && !MainScript.paused)
             {
                 pauseAndResume.PauseGame();
-                SALT.Console.Console.Log("E was released");
             }
             // Slow Mo class end
         }
