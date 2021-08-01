@@ -18,9 +18,10 @@ This mod saves the players position and then loads it when certain keys are pres
 
 # How to install
 
-Download SALT
-Install SALT as given in the instruction
-After installing, put the SmolTAS.dll file in the folder "SALT/Mods".
+* Download SALT
+* Install SALT as given in the instruction
+* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/1.0.0
+* After installing, put the SmolTAS.dll file in the folder "SALT/Mods".
 
 # How to Use
 
