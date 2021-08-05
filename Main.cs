@@ -3,31 +3,25 @@ using HarmonyLib;
 using System;
 using System.Reflection;
 using UnityEngine;
+using System.Threading;
 
 namespace SmolTAS
 {
     public class Main : ModEntryPoint
-    {
-        // Slow Mo toggle boolean
-        public static bool isSlowMoOn = true;
-
-        // Frame advance toggle boolean
-        static bool isFrameAdvanceOn = true;
-
-        // Save Position boolean
-        static bool isSaveAndLoadPosOn = true;
-
-        // Call SlowMo class
-        SlowMo slowMo = new SlowMo(isSlowMoOn);
-
-        // Call Pause and Resume Class
-        PauseAndResume pauseAndResume = new PauseAndResume (0.005f);
-
-        //Call Frame Advance class
-        FrameAdvance frameAdvance = new FrameAdvance(isFrameAdvanceOn);
-
-        // Call Save and load position mod
-        SaveAndLoadPos saveAndLoadPos = new SaveAndLoadPos(isSaveAndLoadPosOn);
+    {        
+        public static bool isSlowMoOn = true; // Slow Mo toggle boolean
+       
+        static bool isFrameAdvanceOn = true; // Frame advance toggle boolean 
+      
+        static bool isSaveAndLoadPosOn = true; // Save Position boolean
+       
+        SlowMo slowMo = new SlowMo(isSlowMoOn); // Call SlowMo class
+        
+        PauseAndResume pauseAndResume = new PauseAndResume (0.005f); // Call Pause and Resume Class
+        
+        FrameAdvance frameAdvance = new FrameAdvance(isFrameAdvanceOn); //Call Frame Advance class
+        
+        SaveAndLoadPos saveAndLoadPos = new SaveAndLoadPos(isSaveAndLoadPosOn); // Call Save and load position mod
 
         // THE EXECUTING ASSEMBLY
         public static Assembly execAssembly;
@@ -57,6 +51,12 @@ namespace SmolTAS
         public override void PostLoad()
         {
 
+        }
+
+        // Called after every game frame
+        public override void Update()
+        {
+            base.Update();
         }
 
         // Called after any key is pressed

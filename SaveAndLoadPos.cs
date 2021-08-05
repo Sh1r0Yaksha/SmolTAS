@@ -8,11 +8,11 @@ namespace SmolTAS
 {
     class SaveAndLoadPos
     {
-        // Boolean for toggling this mod
-        public bool isSaveAndLoadPosOn;
+        public bool isSaveAndLoadPosOn; // Boolean for toggling this mod
 
-        // Field for storing player position
-        private Vector3 savedPlayerPosition = Vector3.zero;
+        private Vector3 savedPlayerPosition = Vector3.zero; // Field for storing player position
+
+        private float savedLevelTime; // Field for saving the time of save
 
         // Constructor for this class
         public SaveAndLoadPos(bool isSaveAndLoadPosOn)
@@ -26,6 +26,10 @@ namespace SmolTAS
             if (keyPressed == KeyCode.F10 && isSaveAndLoadPosOn)
             {
                 savedPlayerPosition = PlayerScript.player.transform.position;
+                if (!Levels.isMainMenu())
+                {
+                    savedLevelTime = SALT.Main.mainScript.levelTime;
+                }
                 SALT.Console.ConsoleWindow.print("Saved Player's position!");
             }
         }
@@ -36,6 +40,10 @@ namespace SmolTAS
             if (keyPressed == KeyCode.F11 && isSaveAndLoadPosOn)
             {
                 PlayerScript.player.transform.position = savedPlayerPosition;
+                if (!Levels.isMainMenu())
+                {
+                    SALT.Main.mainScript.levelTime = savedLevelTime;
+                }
                 SALT.Console.ConsoleWindow.print("Loaded player's position");
                 CamScript.camScript.SnapToPos();
                 SALT.Main.StopSave();
