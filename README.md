@@ -14,7 +14,7 @@ This mod pauses the game and makes it run in slow motion.
 This mod makes the game advance by one game's physics frame (5ms)
 
 ### Save and Load Position
-This mod saves the players position and then loads it when certain keys are pressed
+This mod saves the players position and time spent in level and then loads it when certain keys are pressed
 
 # How to install
 
