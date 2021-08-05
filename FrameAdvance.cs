@@ -8,17 +8,13 @@ namespace SmolTAS
 {
     class FrameAdvance
     {
-        // Boolean for toggling this mod
-        public bool isFrameAdvanceOn { get; set; }
+        public bool isFrameAdvanceOn { get; set; } // Boolean for toggling this mod
 
-        // Calling Pause and resume class
-        PauseAndResume pauseAndResume = new PauseAndResume(Time.deltaTime);
+        PauseAndResume pauseAndResume = new PauseAndResume(Time.deltaTime); // Calling Pause and resume class
 
-        // field for saving the frame count at that moment
-        private int savedFrameCount;
+        private int savedFrameCount; // field for saving the frame count at that moment
 
-        // Creating timer
-        System.Threading.Timer timer;
+        System.Threading.Timer timerForFrameAdvance; // Creating timer for frame advance
 
         // Constructor for this class
         public FrameAdvance(bool isFrameAdvanceOn)
@@ -31,24 +27,25 @@ namespace SmolTAS
         {
             if (SALT.Timer.IsPaused() && isFrameAdvanceOn)
             {
-                SALT.Timer.Unpause(true);
+                pauseAndResume.ResumeGame(1f);
                 savedFrameCount = Time.frameCount;
-                timer = new System.Threading.Timer(FrameTimer, null, 0, 1);
+                timerForFrameAdvance = new System.Threading.Timer(FrameTimer, null, 0, 1);
             }
         }
 
-        // Method that is called every 1ms and resumes game until next frame is reached
+        // Method that is called every 1ms and resumes game until next frame or next ms is reached
         private void FrameTimer(object o)
         {
             if (Time.frameCount - savedFrameCount < 1)
             {
-                pauseAndResume.ResumeGame(1f);
+                    pauseAndResume.ResumeGame(1f);
             }
             else
             {
                 pauseAndResume.PauseGame();
-                timer.Dispose();
+                timerForFrameAdvance.Dispose();
             }
+
         }
     }
 }

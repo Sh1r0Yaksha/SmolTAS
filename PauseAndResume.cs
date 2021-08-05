@@ -9,13 +9,12 @@ using UnityEngine;
 namespace SmolTAS
 {
     class PauseAndResume
-    {
-        // For toggling this mod
-        static bool isSlowMoOn = Main.isSlowMoOn;
+    {        
+        static bool isSlowMoOn = Main.isSlowMoOn; // Boolean for toggling this mod
+       
+        public float deltaTimeValue; // To set F2 value to delta time
 
-        // To set F2 value to delta time
-        public float deltaTimeValue;
-
+        // Constructor for this class
         public PauseAndResume(float deltaTimeValue)
         {
             this.deltaTimeValue = deltaTimeValue;

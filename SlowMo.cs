@@ -6,15 +6,12 @@ using UnityEngine;
 namespace SmolTAS
 {
     class SlowMo
-    {
-        // Boolean for toggling this mod
-        public bool isSlowMoOn { get; set; }
-
-        // Field for timescale value
-        public float valueForTimeScale = 1f;
-
-        // Field for storing delta time of the moment
-        public float deltaTime = Time.deltaTime;
+    {       
+        public bool isSlowMoOn { get; set; } // Boolean for toggling this mod
+        
+        public float valueForTimeScale = 1f; // Field for timescale value
+       
+        public float deltaTime = Time.deltaTime; // Field for storing delta time of the moment
 
         // Constructor for this class
         public SlowMo(bool isSlowModeOn)
