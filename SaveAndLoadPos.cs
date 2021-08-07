@@ -44,9 +44,9 @@ namespace SmolTAS
                 {
                     SALT.Main.mainScript.levelTime = savedLevelTime;
                 }
-                SALT.Console.ConsoleWindow.print("Loaded player's position");
                 CamScript.camScript.SnapToPos();
                 SALT.Main.StopSave();
+                SALT.Console.ConsoleWindow.print("Loaded player's position");
             }
         }
     }
