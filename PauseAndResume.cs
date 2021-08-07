@@ -10,24 +10,20 @@ namespace SmolTAS
 {
     class PauseAndResume
     {        
-        static bool isSlowMoOn = Main.isSlowMoOn; // Boolean for toggling this mod
+        public static bool isSlowMoOn = true; // Boolean for toggling this mod
        
         public float deltaTimeValue; // To set F2 value to delta time
 
         // Constructor for this class
-        public PauseAndResume(float deltaTimeValue)
-        {
-            this.deltaTimeValue = deltaTimeValue;
-        }
-
+        public PauseAndResume() { }
 
         // Pause game method
         public void PauseGame()
         {
             if (Time.deltaTime > 0.0001f)
-            {
                 deltaTimeValue = Time.deltaTime;
-            }
+
+
             SALT.Timer.Pause(true);
             UserInputService.MouseVisible = false;
             SALT.Main.StopSave();
@@ -39,13 +35,9 @@ namespace SmolTAS
             if (!MainScript.paused)
             {
                 if (isSlowMoOn)
-                {
                     Time.timeScale = valueForTimeScale;
-                }
                 else
-                {
                     SALT.Timer.Unpause(true);
-                }
             }
         }
 
@@ -53,9 +45,7 @@ namespace SmolTAS
         public void PauseWhenEsc(KeyCode escPressed)
         {
             if (escPressed == KeyCode.Escape && MainScript.pauseToggled)
-            {
                 PauseGame();
-            }
         }
     }
 }

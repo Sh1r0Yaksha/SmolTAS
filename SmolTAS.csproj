@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="FrameAdvance.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="OnScreenText.cs" />
     <Compile Include="PauseAndResume.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveAndLoadPos.cs" />
