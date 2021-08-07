@@ -1,6 +1,10 @@
 # SmolTAS
 A mod for Smol Ame game which can help make tool assisted speedruns (TAS) for the game, it is still in development. Requires SALT to work
 
+##New in v1.1.1
+* Now you can see which mods(from this modpack) are enabled and disabled on the screen
+* The coordinates of the player is also visible and can be disabled/enabled by pressing the tilde '~' key
+
 # Mods
 This single mod at this moment contains 3 different mods
 * [Slow Motion](https://github.com/Sh1r0Yaksha/SmolTAS#slow-motion)
@@ -56,3 +60,4 @@ This mod saves the players position and time spent in level and then loads it wh
 
 * SALT by [MegaPiggy](https://github.com/MegaPiggy/SALT)
 * Smol Ame by [KevinCow](https://kevincow.itch.io/smol-ame)
+* The Smol Ame speedrunning community [Discord](https://discord.gg/B5SyzgqWjZ)
