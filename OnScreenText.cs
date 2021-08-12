@@ -73,6 +73,7 @@ namespace SmolTAS
                 versionObject.transform.parent.gameObject.AddChild(modsEnabledText, false);
                 RectTransform vRT = versionObject.GetComponent<RectTransform>();
                 RectTransform modsRT = modsEnabledText.GetComponent<RectTransform>().GetCopyOf(vRT);
+                modsRT.SetPivotAndAnchors(new Vector2(1f, 1f));
                 modsRT.localPosition = vRT.localPosition;
                 modsRT.localScale = vRT.localScale;
                 modsRT.anchoredPosition = vRT.anchoredPosition;
@@ -81,7 +82,7 @@ namespace SmolTAS
                 modsRT.offsetMax = vRT.offsetMax;
                 modsRT.anchoredPosition3D = vRT.anchoredPosition3D;
                 modsRT.SetSiblingIndex(vRT.GetSiblingIndex() + 1);
-                modsRT.localPosition += new Vector3(0, 345f, 0);
+                modsRT.localPosition = modsRT.localPosition.SetY((-vRT.localPosition.y) - 33.5f);
                 modsEnabledText.GetComponent<TextMeshProUGUI>().text = " ";
                 modEnabledText = modsEnabledText;
             }
