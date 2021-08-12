@@ -1,7 +1,7 @@
 # SmolTAS
 A mod for Smol Ame game which can help make tool assisted speedruns (TAS) for the game, it is still in development. Requires SALT to work
 
-## New in v1.1.2
+## New in v1.1.3
 * Now you can see which mods(from this modpack) are enabled and disabled on the screen
 * The coordinates of the player is also visible and can be disabled/enabled by pressing the tilde '~' key
 * If slow-mo mod is on, timescale value can be seen on the bottom left od the screen
