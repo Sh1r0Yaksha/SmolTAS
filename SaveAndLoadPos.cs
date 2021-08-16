@@ -3,6 +3,7 @@ using System.Threading;
 using SALT;
 using HarmonyLib;
 using UnityEngine;
+using System.Reflection;
 
 namespace SmolTAS
 {
@@ -13,6 +14,7 @@ namespace SmolTAS
         private Vector3 savedPlayerPosition = Vector3.zero; // Field for storing player position
 
         private float savedLevelTime; // Field for saving the time of save
+
 
         // Constructor for this class
         public SaveAndLoadPos() { }
@@ -38,6 +40,7 @@ namespace SmolTAS
                 PlayerScript.player.transform.position = savedPlayerPosition;
                 if (!Levels.isMainMenu())
                     SALT.Main.mainScript.levelTime = savedLevelTime;
+                
 
                 CamScript.camScript.SnapToPos();
                 SALT.Main.StopSave();

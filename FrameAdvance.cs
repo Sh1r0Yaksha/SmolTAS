@@ -34,10 +34,13 @@ namespace SmolTAS
         private void FrameTimer(object o)
         {
             if (Time.frameCount - savedFrameCount < 1)
-                    pauseAndResume.ResumeGame(1f);
+                pauseAndResume.ResumeGame(1f);
             else
+            {
                 pauseAndResume.PauseGame();
                 timerForFrameAdvance.Dispose();
+            }
+
         }
     }
 }

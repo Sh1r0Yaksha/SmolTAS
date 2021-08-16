@@ -11,20 +11,20 @@ using TMPro;
 namespace SmolTAS
 {
     public class Main : ModEntryPoint
-    {        
+    {
         SlowMo slowMo = new SlowMo(); // Call SlowMo class
-        
-        PauseAndResume pauseAndResume = new PauseAndResume (); // Call Pause and Resume Class
-        
+
+        PauseAndResume pauseAndResume = new PauseAndResume(); // Call Pause and Resume Class
+
         FrameAdvance frameAdvance = new FrameAdvance(); //Call Frame Advance class
-        
+
         SaveAndLoadPos saveAndLoadPos = new SaveAndLoadPos(); // Call Save and load position mod
 
         OnScreenText onScreenText = new OnScreenText(); // Call OnScreenText Class
 
-
         // THE EXECUTING ASSEMBLY
         public static Assembly execAssembly;
+        
 
         // Called before MainScript.Awake
         // You want to register new things and enum values here, as well as do all your harmony patching
@@ -43,19 +43,19 @@ namespace SmolTAS
         {
             UserInputService.Instance.InputBegan += this.InputBegan;
             UserInputService.Instance.InputEnded += this.InputEnded;
+            SALT.Callbacks.OnLevelLoaded += this.OnLevelLoaded;
 
-           
             // Calling coordinates text and mod text method to create the game object
             onScreenText.CreateCoordinateText();
             onScreenText.CreateModsText();
             onScreenText.CreateTimeScaleValueText();
+            onScreenText.CreateVelocityText();
         }
 
         // Called after all mods Load's have been called
         // Used for editing existing assets in the game, not a registry step
         public override void PostLoad()
-        {
-
+        {          
         }
 
         // Called after every game frame
@@ -64,12 +64,21 @@ namespace SmolTAS
             onScreenText.CoordinatesTextShow();
             ModstoggleText();
             TimeScaleValuePrint();
+            onScreenText.VelocityTextShow();
+           
+            
             base.Update();
+        }
+
+        // Called after a level is loaded
+        void OnLevelLoaded()
+        {
         }
 
         // Called after any key is pressed
         public void InputBegan(UserInputService.InputObject inputObject, bool wasProcessed)
         {
+
             // Pausing and resuming keys start
             if (inputObject.keyCode == KeyCode.Q)
                 pauseAndResume.ResumeGame(slowMo.valueForTimeScale);
@@ -118,9 +127,7 @@ namespace SmolTAS
             if (inputObject.keyCode == KeyCode.BackQuote)
             {
                 if (onScreenText.isCoordTextOn)
-                {
                     onScreenText.isCoordTextOn = false;
-                }
                 else
                 {
                     onScreenText.isCoordTextOn = true;
@@ -172,7 +179,7 @@ namespace SmolTAS
                 onScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = " ";
         }
 
-
+        
 
     }
 }
