@@ -7,6 +7,7 @@ using System.Threading;
 using System.Linq;
 using SALT.Extensions;
 using TMPro;
+using System.IO;
 
 namespace SmolTAS
 {
@@ -37,6 +38,10 @@ namespace SmolTAS
             // Gets the Assembly being executed
             execAssembly = Assembly.GetExecutingAssembly();
             HarmonyInstance.PatchAll(execAssembly);
+            if (!File.Exists(@SALT.FileSystem.GetMyPath() + "\\AO.txt"))
+                registerInput.CreateAOTextFile();
+            else
+                registerInput.ReadAOFiles();
         }
 
 
@@ -54,12 +59,14 @@ namespace SmolTAS
             onScreenText.CreateModsText();
             onScreenText.CreateTimeScaleValueText();
             onScreenText.CreateVelocityText();
+            
         }
 
         // Called after all mods Load's have been called
         // Used for editing existing assets in the game, not a registry step
         public override void PostLoad()
-        {          
+        {
+
         }
         
         // Called after every game frame
