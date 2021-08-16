@@ -1,16 +1,13 @@
 # SmolTAS
 A mod for Smol Ame game which can help make tool assisted speedruns (TAS) for the game, it is still in development. Requires SALT to work
 
-## New in v1.1.4
-* Now you can see which mods(from this modpack) are enabled and disabled on the screen
-* The coordinates and Velocity of the player are also visible and can be disabled/enabled by pressing the tilde '~' key
-* If slow-mo mod is on, timescale value can be seen on the bottom left od the screen
-
 # Mods
 This single mod at this moment contains 3 different mods
 * [Slow Motion](https://github.com/Sh1r0Yaksha/SmolTAS#slow-motion)
 * [Frame advance](https://github.com/Sh1r0Yaksha/SmolTAS#frame-advance)
 * [Save and Load Position](https://github.com/Sh1r0Yaksha/SmolTAS#save-and-load-position)
+* [Coordinates and Velocity of Player](https://github.com/Sh1r0Yaksha/SmolTAS#coordinates-and-velocity-of-player)
+* [Input Recording](https://github.com/Sh1r0Yaksha/SmolTAS#input-recording)
 
 ### Slow Motion
 This mod pauses the game and makes it run in slow motion.
@@ -20,6 +17,12 @@ This mod makes the game advance by one game's physics frame (5ms)
 
 ### Save and Load Position
 This mod saves the players position and time spent in level and then loads it when certain keys are pressed
+
+### Coordinates and Velocity of Player
+This mod displays the values of coordinates and Velocities of the player in X and Y direction
+
+### Input Recording
+This mod lets people write inputs as WASD in a text file and the game will replicate those inputs frame by frame
 
 # How to install
 
@@ -43,6 +46,7 @@ This mod saves the players position and time spent in level and then loads it wh
 * 'F5' decrements the timescale value by 0.1
 * 'F6' increments the timescale value by 0.1
 * This method is dependent on timescale value so your framerate changes while in slow motion
+* The value of timescale will be visible in the bottom left corner
 
 ### Frame Advance
 
@@ -56,6 +60,21 @@ This mod saves the players position and time spent in level and then loads it wh
 * Pressing F10 will save player's position
 * Pressing F11 will load player's position to the saved place
 * If your position is not saved, default load position will be at (0, 0, 0)
+
+### Coordinates and Velocity of Player
+
+* These values can be seen on the bottom right corner of the screen
+* To toggle this mod, press the tilde '~' key
+
+### Input Recording
+
+* Only for AO at the moment
+* Make a text file named "AO.txt" in the Mods folder where you store your other mods
+* If you don't make a text file, it will be made automatically in the Mods folder
+* adding text in each line of the text file determines which button will be pressed
+* For e.g. if you enter DW on the 20th line, the game will press those 2 keys at the 20th frame
+* Keys to enter - 'D' for right, 'W' for up, 'A' for left and 'S' for down
+* Leave a few lines blank after the inputs so that every key is released (Else some keys can remain held)
 
 # Acknowledgements
 
