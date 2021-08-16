@@ -7,6 +7,7 @@ using System.Threading;
 using System.Linq;
 using SALT.Extensions;
 using TMPro;
+using System.IO;
 
 namespace SmolTAS
 {
@@ -22,6 +23,10 @@ namespace SmolTAS
 
         OnScreenText onScreenText = new OnScreenText(); // Call OnScreenText Class
 
+        RegisterInputFromFile registerInput = new RegisterInputFromFile(); // Call RegisterInputFromFile Class
+
+        int i = 0; // integer which runs the file's lines
+
         // THE EXECUTING ASSEMBLY
         public static Assembly execAssembly;
         
@@ -33,6 +38,10 @@ namespace SmolTAS
             // Gets the Assembly being executed
             execAssembly = Assembly.GetExecutingAssembly();
             HarmonyInstance.PatchAll(execAssembly);
+            if (!File.Exists(@SALT.FileSystem.GetMyPath() + "\\AO.txt"))
+                registerInput.CreateAOTextFile();
+            else
+                registerInput.ReadAOFiles();
         }
 
 
@@ -50,14 +59,16 @@ namespace SmolTAS
             onScreenText.CreateModsText();
             onScreenText.CreateTimeScaleValueText();
             onScreenText.CreateVelocityText();
+            
         }
 
         // Called after all mods Load's have been called
         // Used for editing existing assets in the game, not a registry step
         public override void PostLoad()
-        {          
-        }
+        {
 
+        }
+        
         // Called after every game frame
         public override void Update()
         {
@@ -65,7 +76,11 @@ namespace SmolTAS
             ModstoggleText();
             TimeScaleValuePrint();
             onScreenText.VelocityTextShow();
-           
+            if (Levels.isOffice() && i < registerInput.recordedInputs.Length)
+            {
+                registerInput.DoInputs(i);
+                i++;
+            }
             
             base.Update();
         }
@@ -73,6 +88,8 @@ namespace SmolTAS
         // Called after a level is loaded
         void OnLevelLoaded()
         {
+            i = 0;
+            registerInput.ReadAOFiles();
         }
 
         // Called after any key is pressed
@@ -178,8 +195,5 @@ namespace SmolTAS
             else
                 onScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = " ";
         }
-
-        
-
     }
 }
