@@ -13,12 +13,16 @@ namespace SmolTAS
     class OnScreenText
     {
         public GameObject coordinateText = null; // Create coordinate text's gameobject
-        public bool isCoordTextOn = true; // boolean to toggle coordinate text on or off
+        public bool isCoordTextOn = true; // boolean to toggle coordinate and velocity text on or off
 
         public GameObject modEnabledText = null; // Create mods enabled/disabled text's gameobject
 
         public GameObject timeScaleValuesText = null; // Create Time Scale value text's gameobject
+
+        public GameObject velText; // Create Velocity text's gameobject
+
         public bool isTimeScaleTextOn = true; // boolean to toggle time scale text on or off
+        
 
         public OnScreenText() { } // Constructor for this class
 
@@ -54,7 +58,7 @@ namespace SmolTAS
         public void CoordinatesTextShow()
         {
             if (isCoordTextOn)
-                coordinateText.GetComponent<TextMeshProUGUI>().text = "X: " + PlayerScript.player.transform.position.x + " Y: " +
+                coordinateText.GetComponent<TextMeshProUGUI>().text = "Coordinates X: " + PlayerScript.player.transform.position.x + " Y: " +
                 PlayerScript.player.transform.position.y;
 
             else
@@ -116,6 +120,52 @@ namespace SmolTAS
             }
             else if (timeScaleValuesText == null)
                 timeScaleValuesText = timeScaleText.gameObject;
+        }
+
+        // Create Velocity text as gameobject
+        public void CreateVelocityText()
+        {
+            RectTransform velocity = UnityEngine.Object.FindObjectsOfType<RectTransform>().FirstOrDefault(tmp => tmp.gameObject.name == "velocity");
+            if (velocity == null)
+            {
+                GameObject versionObject = UnityEngine.Object.FindObjectsOfType<RectTransform>().FirstOrDefault(tmp => tmp.gameObject.name == "Version").gameObject;
+                GameObject velocityText = versionObject.CloneInstance();
+                velocityText.name = "velocitytext";
+                versionObject.transform.parent.gameObject.AddChild(velocityText, false);
+                RectTransform vRT = versionObject.GetComponent<RectTransform>();
+                RectTransform velRT = velocityText.GetComponent<RectTransform>().GetCopyOf(vRT);
+                velRT.localPosition = vRT.localPosition;
+                velRT.localScale = vRT.localScale;
+                velRT.anchoredPosition = vRT.anchoredPosition;
+                velRT.sizeDelta = vRT.sizeDelta;
+                velRT.offsetMin = vRT.offsetMin;
+                velRT.offsetMax = vRT.offsetMax;
+                velRT.anchoredPosition3D = vRT.anchoredPosition3D;
+                velRT.SetSiblingIndex(vRT.GetSiblingIndex() + 1);
+                velRT.localPosition += new Vector3(0, 37.5f, 0);
+                velocityText.GetComponent<TextMeshProUGUI>().text = " ";
+                velText = velocityText;
+            }
+            else if (velText == null)
+                velText = velocity.gameObject;
+        }
+
+        // Method to show velocity text on screen
+        public void VelocityTextShow()
+        {
+            // Reflections magic
+            PlayerScript dummyPlayer = SALT.Main.actualPlayer;
+            Type typ = typeof(PlayerScript);
+            FieldInfo type = typ.GetField("rb", System.Reflection.BindingFlags.NonPublic
+                | System.Reflection.BindingFlags.Instance);
+            Rigidbody2D rigidBodyPlayer = (Rigidbody2D)type.GetValue(dummyPlayer);
+
+            if (isCoordTextOn)
+                velText.GetComponent<TextMeshProUGUI>().text = "Velocity X: " + rigidBodyPlayer.velocity.x + " Y: " +
+                rigidBodyPlayer.velocity.y;
+
+            else
+                velText.GetComponent<TextMeshProUGUI>().text = " ";
         }
 
         // Prints Enabled for True and Disabled for False

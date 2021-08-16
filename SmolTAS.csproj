@@ -59,6 +59,10 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\Smol Ame_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\Smol Ame_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FrameAdvance.cs" />
