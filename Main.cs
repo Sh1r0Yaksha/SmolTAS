@@ -22,6 +22,10 @@ namespace SmolTAS
 
         OnScreenText onScreenText = new OnScreenText(); // Call OnScreenText Class
 
+        RegisterInputFromFile registerInput = new RegisterInputFromFile(); // Call RegisterInputFromFile Class
+
+        int i = 0; // integer which runs the file's lines
+
         // THE EXECUTING ASSEMBLY
         public static Assembly execAssembly;
         
@@ -57,7 +61,7 @@ namespace SmolTAS
         public override void PostLoad()
         {          
         }
-
+        
         // Called after every game frame
         public override void Update()
         {
@@ -65,7 +69,11 @@ namespace SmolTAS
             ModstoggleText();
             TimeScaleValuePrint();
             onScreenText.VelocityTextShow();
-           
+            if (Levels.isOffice() && i < registerInput.recordedInputs.Length)
+            {
+                registerInput.DoInputs(i);
+                i++;
+            }
             
             base.Update();
         }
@@ -73,6 +81,8 @@ namespace SmolTAS
         // Called after a level is loaded
         void OnLevelLoaded()
         {
+            i = 0;
+            registerInput.ReadAOFiles();
         }
 
         // Called after any key is pressed
@@ -178,8 +188,5 @@ namespace SmolTAS
             else
                 onScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = " ";
         }
-
-        
-
     }
 }
