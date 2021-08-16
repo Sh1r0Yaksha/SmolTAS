@@ -70,7 +70,7 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 
 * Only for AO at the moment
 * Make a text file named "AO.txt" in the Mods folder where you store your other mods
-* If you don't make a text file, it will be made automatically in the Mods folder
+* If you don't make a text file, it will be made automatically in the Mods folder when you load the game
 * adding text in each line of the text file determines which button will be pressed
 * For e.g. if you enter DW on the 20th line, the game will press those 2 keys at the 20th frame
 * Keys to enter - 'D' for right, 'W' for up, 'A' for left and 'S' for down
