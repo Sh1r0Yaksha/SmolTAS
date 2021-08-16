@@ -1,9 +1,9 @@
 # SmolTAS
 A mod for Smol Ame game which can help make tool assisted speedruns (TAS) for the game, it is still in development. Requires SALT to work
 
-## New in v1.1.3
+## New in v1.1.4
 * Now you can see which mods(from this modpack) are enabled and disabled on the screen
-* The coordinates of the player is also visible and can be disabled/enabled by pressing the tilde '~' key
+* The coordinates and Velocity of the player are also visible and can be disabled/enabled by pressing the tilde '~' key
 * If slow-mo mod is on, timescale value can be seen on the bottom left od the screen
 
 # Mods
@@ -25,7 +25,7 @@ This mod saves the players position and time spent in level and then loads it wh
 
 * Download SALT
 * Install SALT as given in the instruction
-* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/1.1.3
+* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/1.1.4
 * After installing, put the SmolTAS.dll file in the folder "SALT/Mods".
 
 # How to Use
