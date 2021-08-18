@@ -82,6 +82,7 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 * Added text at the bottom left showing how many game frames have passed and which line the code is currently on when playing inputs
 * Fixed the issue that happened when a level was reloaded while inputs were playing
 * Now the inputs are played every game physics frame instead of your framerate frame
+* Pausing the game by LShift will also pause the playing of inputs
 
 # Acknowledgements
 
