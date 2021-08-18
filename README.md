@@ -28,7 +28,7 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 
 * Download SALT
 * Install SALT as given in the instruction
-* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/2.0.0
+* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/2.0.1
 * After installing, put the SmolTAS.dll file in the folder "SALT/Mods".
 
 # How to Use
@@ -75,6 +75,13 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 * For e.g. if you enter DW on the 20th line, the game will press those 2 keys at the 20th frame
 * Keys to enter - 'D' for right, 'W' for up, 'A' for left and 'S' for down
 * Leave a few lines blank after the inputs so that every key is released (Else some keys can remain held)
+
+# Update logs
+
+# v2.0.1
+* Added text at the bottom left showing how many game frames have passed and which line the code is currently on when playing inputs
+* Fixed the issue that happened when a level was reloaded while inputs were playing
+* Now the inputs are played every game physics frame instead of your framerate frame
 
 # Acknowledgements
 
