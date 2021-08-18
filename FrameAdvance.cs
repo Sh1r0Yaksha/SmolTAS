@@ -40,7 +40,6 @@ namespace SmolTAS
                 pauseAndResume.PauseGame();
                 timerForFrameAdvance.Dispose();
             }
-
         }
     }
 }

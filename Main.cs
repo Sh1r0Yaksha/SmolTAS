@@ -23,7 +23,11 @@ namespace SmolTAS
 
         OnScreenText onScreenText = new OnScreenText(); // Call OnScreenText Class
 
-        RegisterInputFromFile registerInput = new RegisterInputFromFile(); // Call RegisterInputFromFile Class
+        RegisterInputFromFile registerInput = new RegisterInputFromFile(); // Call RegisterInputFromFile Class 
+
+        private int savedFrameCount;
+
+        System.Threading.Timer timerForInputs;
 
         int i = 0; // integer which runs the file's lines
 
@@ -53,6 +57,7 @@ namespace SmolTAS
             UserInputService.Instance.InputBegan += this.InputBegan;
             UserInputService.Instance.InputEnded += this.InputEnded;
             SALT.Callbacks.OnLevelLoaded += this.OnLevelLoaded;
+            SALT.Callbacks.OnMainMenuLoaded += this.OnMainMenuLoaded;
 
             // Calling coordinates text and mod text method to create the game object
             onScreenText.CreateCoordinateText();
@@ -75,22 +80,56 @@ namespace SmolTAS
             onScreenText.CoordinatesTextShow();
             ModstoggleText();
             TimeScaleValuePrint();
-            onScreenText.VelocityTextShow();
-            if (Levels.isOffice() && i < registerInput.recordedInputs.Length)
-            {
-                registerInput.DoInputs(i);
-                i++;
-            }
-            
+            onScreenText.VelocityTextShow();       
             base.Update();
         }
+
+        // Method called when a level is loaded for inputs
+        void InputsMethod()
+        {
+            savedFrameCount = Time.frameCount;
+            timerForInputs = new System.Threading.Timer(InputsCallback, null, 0, 1);
+        }
+
+        // Method that runs every ms and runs the input every game physics frame
+        void InputsCallback(object obj)
+        {
+            
+            if (i < registerInput.recordedInputsList.Count)
+            {
+                if (Time.frameCount - savedFrameCount == 1 && Time.timeScale != 0)
+                {
+                    registerInput.DoInputs(i);
+                    i++;                   
+                }
+                savedFrameCount = Time.frameCount;
+            }
+            else
+            {
+                timerForInputs.Dispose();
+            }
+        }
+
 
         // Called after a level is loaded
         void OnLevelLoaded()
         {
+            
             i = 0;
-            registerInput.ReadAOFiles();
+            registerInput.ResetInputs();
+            if (Levels.isOffice())
+            {
+                registerInput.ReadAOFiles();
+                SALT.Main.StopSave();
+                InputsMethod();
+            }
         }
+
+        // Called after the main hub is loaded
+        void OnMainMenuLoaded()
+        {
+        }
+
 
         // Called after any key is pressed
         public void InputBegan(UserInputService.InputObject inputObject, bool wasProcessed)
@@ -106,6 +145,8 @@ namespace SmolTAS
             if (inputObject.keyCode == KeyCode.Escape)
                 pauseAndResume.PauseWhenEsc(KeyCode.Escape);
             // Pausing and resuming keys end
+
+            // toggling mods start
 
             // Slow Mo mod toggle
             if (inputObject.keyCode == KeyCode.Alpha1)
@@ -124,27 +165,20 @@ namespace SmolTAS
 
             //Frame Advance mod toggle
             if (inputObject.keyCode == KeyCode.Alpha2)
-            {
-                if (frameAdvance.isFrameAdvanceOn)
-                    frameAdvance.isFrameAdvanceOn = false;
-                else
-                    frameAdvance.isFrameAdvanceOn = true;
-            }
+                frameAdvance.isFrameAdvanceOn = !frameAdvance.isFrameAdvanceOn;
 
             //Save and load Position toggle
             if (inputObject.keyCode == KeyCode.Alpha3)
-            {
-                if (saveAndLoadPos.isSaveAndLoadPosOn)
-                    saveAndLoadPos.isSaveAndLoadPosOn = false;
-                else
-                    saveAndLoadPos.isSaveAndLoadPosOn = true;
-            } 
+                saveAndLoadPos.isSaveAndLoadPosOn = !saveAndLoadPos.isSaveAndLoadPosOn;
 
             // Coordinates text toggle
             if (inputObject.keyCode == KeyCode.BackQuote)
             {
                 if (onScreenText.isCoordTextOn)
+                {
                     onScreenText.isCoordTextOn = false;
+                    onScreenText.isTimeScaleTextOn = false;
+                }
                 else
                 {
                     onScreenText.isCoordTextOn = true;
@@ -191,9 +225,12 @@ namespace SmolTAS
         public void TimeScaleValuePrint()
         {
             if (onScreenText.isTimeScaleTextOn)
-                onScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = "Timescale value: " + slowMo.valueForTimeScale;
+                onScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text ="Current frame: "+ Time.frameCount + 
+                    "\nline on text file: " + i +
+                    "\nTimescale value: " + slowMo.valueForTimeScale;
             else
                 onScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = " ";
         }
     }
+
 }
