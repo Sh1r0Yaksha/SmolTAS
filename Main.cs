@@ -25,10 +25,6 @@ namespace SmolTAS
 
         RegisterInputFromFile registerInput = new RegisterInputFromFile(); // Call RegisterInputFromFile Class 
 
-        private int savedFrameCount;
-
-        System.Threading.Timer timerForInputs;
-
         int i = 0; // integer which runs the file's lines
 
         // THE EXECUTING ASSEMBLY
@@ -42,10 +38,8 @@ namespace SmolTAS
             // Gets the Assembly being executed
             execAssembly = Assembly.GetExecutingAssembly();
             HarmonyInstance.PatchAll(execAssembly);
-            if (!File.Exists(@SALT.FileSystem.GetMyPath() + "\\AO.txt"))
-                registerInput.CreateAOTextFile();
-            else
-                registerInput.ReadAOFiles();
+            if (!File.Exists(@SALT.FileSystem.GetMyPath() + "\\HCH.txt"))
+                registerInput.CreateTextFile();
         }
 
 
@@ -60,10 +54,9 @@ namespace SmolTAS
             SALT.Callbacks.OnMainMenuLoaded += this.OnMainMenuLoaded;
 
             // Calling coordinates text and mod text method to create the game object
-            onScreenText.CreateCoordinateText();
+            onScreenText.CreateCoordinateAndVelocityText();
             onScreenText.CreateModsText();
             onScreenText.CreateTimeScaleValueText();
-            onScreenText.CreateVelocityText();
             
         }
 
@@ -77,57 +70,34 @@ namespace SmolTAS
         // Called after every game frame
         public override void Update()
         {
-            onScreenText.CoordinatesTextShow();
             ModstoggleText();
             TimeScaleValuePrint();
-            onScreenText.VelocityTextShow();       
-            base.Update();
+            onScreenText.CoordinateAndVelocityTextShow();       
         }
 
-        // Method called when a level is loaded for inputs
-        void InputsMethod()
+  
+        // Called after every game physics frame (200fps)
+        public override void FixedUpdate()
         {
-            savedFrameCount = Time.frameCount;
-            timerForInputs = new System.Threading.Timer(InputsCallback, null, 0, 1);
+                registerInput.DoInputs(i);
+                i++;
         }
-
-        // Method that runs every ms and runs the input every game physics frame
-        void InputsCallback(object obj)
-        {
-            
-            if (i < registerInput.recordedInputsList.Count)
-            {
-                if (Time.frameCount - savedFrameCount == 1 && Time.timeScale != 0)
-                {
-                    registerInput.DoInputs(i);
-                    i++;                   
-                }
-                savedFrameCount = Time.frameCount;
-            }
-            else
-            {
-                timerForInputs.Dispose();
-            }
-        }
-
 
         // Called after a level is loaded
         void OnLevelLoaded()
-        {
-            
+        { 
             i = 0;
             registerInput.ResetInputs();
-            if (Levels.isOffice())
-            {
-                registerInput.ReadAOFiles();
-                SALT.Main.StopSave();
-                InputsMethod();
-            }
+            registerInput.ReadFiles((int)Levels.CurrentLevel);
+            SALT.Main.StopSave();
         }
 
         // Called after the main hub is loaded
         void OnMainMenuLoaded()
         {
+            i = 0;
+            registerInput.ResetInputs();
+            registerInput.ReadFiles(0);
         }
 
 
