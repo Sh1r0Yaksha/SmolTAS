@@ -68,12 +68,14 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 
 ### Input Recording
 
-* Only for AO at the moment
-* Make a text file named "AO.txt" in the Mods folder where you store your other mods
-* If you don't make a text file, it will be made automatically in the Mods folder when you load the game
+* Make a folder named "Inputs" in the mods folder and leave it empty
+* Backup input files if you have those from the previous version.
+* Open the game
+* 13 text files will be created in the Inputs folder each denoting a level
+* AO denotes Ame's Office, similarly all levels initials denote the level, MAIN denotes the hub world
 * adding text in each line of the text file determines which button will be pressed
 * For e.g. if you enter DW on the 20th line, the game will press those 2 keys at the 20th frame
-* Keys to enter - 'D' for right, 'W' for up, 'A' for left and 'S' for down
+* Keys to enter - 'D' for right, 'W' or 'J' for up, 'A' for left and 'S' or 'G' for down
 * Leave a few lines blank after the inputs so that every key is released (Else some keys can remain held)
 
 # Update logs
@@ -83,6 +85,11 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 * Fixed the issue that happened when a level was reloaded while inputs were playing
 * Now the inputs are played every game physics frame instead of your framerate frame
 * Pausing the game by LShift will also pause the playing of inputs
+
+# v2.1.0
+* Updated for SALT v1.2
+* Fixed the on screen texts which got scattered after the update
+* Input recording for every level
 
 # Acknowledgements
 
