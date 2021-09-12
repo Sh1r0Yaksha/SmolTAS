@@ -31,14 +31,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\SALT\Libs\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210831.1 SALT\SALT\Libs\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp_old">
-      <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\Smol Ame_Data\Managed\Assembly-CSharp_old.dll</HintPath>
+    <Reference Include="Assembly-CSharp_old, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210831.1 SALT\Smol Ame_Data\Managed\Assembly-CSharp_old.dll</HintPath>
     </Reference>
-    <Reference Include="SALT">
-      <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\Smol Ame_Data\Managed\SALT.dll</HintPath>
+    <Reference Include="INIFileParser">
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210831.1 SALT\SALT\Libs\INIFileParser.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210831.1 SALT\SALT\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SALT, Version=1.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210831.1 SALT\Smol Ame_Data\Managed\SALT.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,18 +59,15 @@
     <Reference Include="System.Xml" />
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\Smol Ame_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210831.1 SALT\Smol Ame_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ugui, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\Smol Ame_Data\Managed\Unity.ugui.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\Smol Ame_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210831.1 SALT\Smol Ame_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Games\Smol Ame\SmolAme_v210612.1 SALT\Smol Ame_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>D:\Games\Smol Ame\SmolAme_v210831.1 SALT\Smol Ame_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
