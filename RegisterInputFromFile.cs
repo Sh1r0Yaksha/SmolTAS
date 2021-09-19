@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using SALT;
 
 namespace SmolTAS
 {
@@ -25,92 +26,105 @@ namespace SmolTAS
 
         // Each line of the file is stored as a string
 
-        public List<String> recordedInputsList;
+        public List<string> recordedInputsList;
 
+        // Inputs folder in SALT\Mods folder
+        private string Inputs => FileSystem.GetMyPath() + "\\Inputs";
+
+        private readonly string[] empty = { string.Empty };
 
         // Creates a file in SALT\Mods folder
         public void CreateTextFile()
         {
-            string[] space = { " " };
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\AO.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\PoR.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\RH.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\PL.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\AOR.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\TTM.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\NO.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\MM.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\IM.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\RU.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\INA.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\HCH.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\REF.txt", space);
-            File.WriteAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\MAIN.txt", space);
+            if (!Directory.Exists(Inputs))
+                Directory.CreateDirectory(Inputs);
+            File.WriteAllLines(Inputs + "\\AO.txt", empty);
+            File.WriteAllLines(Inputs + "\\AO.txt", empty);
+            File.WriteAllLines(Inputs + "\\PoR.txt", empty);
+            File.WriteAllLines(Inputs + "\\RH.txt", empty);
+            File.WriteAllLines(Inputs + "\\PL.txt", empty);
+            File.WriteAllLines(Inputs + "\\AOR.txt", empty);
+            File.WriteAllLines(Inputs + "\\TTM.txt", empty);
+            File.WriteAllLines(Inputs + "\\NO.txt", empty);
+            File.WriteAllLines(Inputs + "\\MM.txt", empty);
+            File.WriteAllLines(Inputs + "\\IM.txt", empty);
+            File.WriteAllLines(Inputs + "\\RU.txt", empty);
+            File.WriteAllLines(Inputs + "\\INA.txt", empty);
+            File.WriteAllLines(Inputs + "\\HCH.txt", empty);
+            File.WriteAllLines(Inputs + "\\REF.txt", empty);
+            File.WriteAllLines(Inputs + "\\MAIN.txt", empty);
         }
 
         // Reads from a file named AO.txt in SALT\Mods folder
-        public void ReadFiles(int i)
+        public void ReadFiles(Level level)
         {
-            string[] temp = { "" };
-            switch (i)
+            if (!Directory.Exists(Inputs))
+                Directory.CreateDirectory(Inputs);
+
+            string[] temp;
+            switch (level)
             {
-                case 0:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\MAIN.txt");
+                case Level.MAIN_MENU:
+                    temp = File.ReadAllLines(Inputs + "\\MAIN.txt");
                     break;
 
-                case 1:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\AO.txt");
+                case Level.OFFICE:
+                    temp = File.ReadAllLines(Inputs + "\\AO.txt");
                     break;
 
-                case 2:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\PoR.txt");
+                case Level.POP_ON_ROCKS:
+                    temp = File.ReadAllLines(Inputs + "\\PoR.txt");
                     break;
 
-                case 3:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\RH.txt");
+                case Level.RED_HEART:
+                    temp = File.ReadAllLines(Inputs + "\\RH.txt");
                     break;
 
-                case 4:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\PL.txt");
+                case Level.PEKO_LAND:
+                    temp = File.ReadAllLines(Inputs + "\\PL.txt");
                     break;
 
-                case 5:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\AOR.txt");
+                case Level.OFFICE_REVERSED:
+                    temp = File.ReadAllLines(Inputs + "\\AOR.txt");
                     break;
 
-                case 6:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\TTM.txt");
+                case Level.TO_THE_MOON:
+                    temp = File.ReadAllLines(Inputs + "\\TTM.txt");
                     break;
 
-                case 7:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\NO.txt");
+                case Level.NOTHING:
+                    temp = File.ReadAllLines(Inputs + "\\NO.txt");
                     break;
 
-                case 8:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\MM.txt");
+                case Level.MOGU_MOGU:
+                    temp = File.ReadAllLines(Inputs + "\\MM.txt");
                     break;
 
-                case 9:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\IM.txt");
+                case Level.INUMORE:
+                    temp = File.ReadAllLines(Inputs + "\\IM.txt");
                     break;
 
-                case 10:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\RU.txt");
+                case Level.RUSHIA:
+                    temp = File.ReadAllLines(Inputs + "\\RU.txt");
                     break;
 
-                case 11:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\INA.txt");
+                case Level.INASCAPABLE_MADNESS:
+                    temp = File.ReadAllLines(Inputs + "\\INA.txt");
                     break;
 
-                case 12:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\HCH.txt");
+                case Level.HERE_COMES_HOPE:
+                    temp = File.ReadAllLines(Inputs + "\\HCH.txt");
                     break;
 
-                case 13:
-                    temp = File.ReadAllLines(@SALT.FileSystem.GetMyPath() + "\\Inputs\\REF.txt");
+                case Level.REFLECT:
+                    temp = File.ReadAllLines(Inputs + "\\REF.txt");
+                    break;
+
+                default:
+                    temp = empty;
                     break;
             }
-            recordedInputsList = new List<string>(temp);
+            recordedInputsList = temp.ToList();
         }
 
         public void ResetInputs()

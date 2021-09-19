@@ -88,7 +88,7 @@ namespace SmolTAS
         { 
             i = 0;
             registerInput.ResetInputs();
-            registerInput.ReadFiles((int)Levels.CurrentLevel);
+            registerInput.ReadFiles(Levels.CurrentLevel);
             SALT.Main.StopSave();
         }
 
