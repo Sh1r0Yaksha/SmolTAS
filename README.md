@@ -28,7 +28,7 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 
 * Download SALT
 * Install SALT as given in the instruction
-* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/2.0.1
+* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/2.1.1
 * After installing, put the SmolTAS.dll file in the folder "SALT/Mods".
 
 # How to Use
@@ -68,7 +68,6 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 
 ### Input Recording
 
-* Make a folder named "Inputs" in the mods folder and leave it empty
 * Backup input files if you have those from the previous version.
 * Open the game
 * 13 text files will be created in the Inputs folder each denoting a level
@@ -90,6 +89,9 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 * Updated for SALT v1.2
 * Fixed the on screen texts which got scattered after the update
 * Input recording for every level
+
+# v2.1.1
+* No need to make the "Inputs" folder yourself, it will be made by the mod automatically
 
 # Acknowledgements
 
