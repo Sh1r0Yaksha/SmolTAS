@@ -28,7 +28,7 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 
 * Download SALT
 * Install SALT as given in the instruction
-* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/2.1.1
+* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/2.1.2
 * After installing, put the SmolTAS.dll file in the folder "SALT/Mods".
 
 # How to Use
