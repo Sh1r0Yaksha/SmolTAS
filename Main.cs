@@ -38,7 +38,7 @@ namespace SmolTAS
             // Gets the Assembly being executed
             execAssembly = Assembly.GetExecutingAssembly();
             HarmonyInstance.PatchAll(execAssembly);
-            if (!File.Exists(@SALT.FileSystem.GetMyPath() + "\\HCH.txt"))
+            if (!File.Exists(SALT.FileSystem.GetMyPath() + "\\Inputs\\HCH.txt"))
                 registerInput.CreateTextFile();
         }
 
@@ -57,7 +57,8 @@ namespace SmolTAS
             onScreenText.CreateCoordinateAndVelocityText();
             onScreenText.CreateModsText();
             onScreenText.CreateTimeScaleValueText();
-            
+            registerInput.ReadFiles(Level.MAIN_MENU);
+
         }
 
         // Called after all mods Load's have been called
@@ -79,8 +80,11 @@ namespace SmolTAS
         // Called after every game physics frame (200fps)
         public override void FixedUpdate()
         {
+            if (RegisterInputFromFile.recordedInputsList.Count > 2)
+            {
                 registerInput.DoInputs(i);
                 i++;
+            }
         }
 
         // Called after a level is loaded
@@ -111,9 +115,6 @@ namespace SmolTAS
 
             if (inputObject.keyCode == KeyCode.LeftShift)
                 pauseAndResume.PauseGame();
-
-            if (inputObject.keyCode == KeyCode.Escape)
-                pauseAndResume.PauseWhenEsc(KeyCode.Escape);
             // Pausing and resuming keys end
 
             // toggling mods start

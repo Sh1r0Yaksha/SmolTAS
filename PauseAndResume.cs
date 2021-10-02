@@ -11,7 +11,7 @@ namespace SmolTAS
     class PauseAndResume
     {        
         public static bool isSlowMoOn = true; // Boolean for toggling this mod
-       
+
         public float deltaTimeValue; // To set F2 value to delta time
 
         // Constructor for this class
@@ -39,13 +39,6 @@ namespace SmolTAS
                 else
                     SALT.Timer.Unpause(true);
             }
-        }
-
-        // When pause menu is toggled, game remains paused
-        public void PauseWhenEsc(KeyCode escPressed)
-        {
-            if (escPressed == KeyCode.Escape && MainScript.pauseToggled)
-                PauseGame();
         }
     }
 }

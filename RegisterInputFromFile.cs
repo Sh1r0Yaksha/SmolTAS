@@ -26,7 +26,7 @@ namespace SmolTAS
 
         // Each line of the file is stored as a string
 
-        public List<string> recordedInputsList;
+        public static List<string> recordedInputsList { get; set; }
 
         // Inputs folder in SALT\Mods folder
         private string Inputs => FileSystem.GetMyPath() + "\\Inputs";
