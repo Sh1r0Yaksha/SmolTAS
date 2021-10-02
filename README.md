@@ -93,6 +93,11 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 # v2.1.1
 * No need to make the "Inputs" folder yourself, it will be made by the mod automatically
 
+# 2.1.2
+* Fixed issue which created infinite ERROR logs in the console after opening a level
+* Fixed issue which deleted the previous input files when the game opened
+* Now exiting the menu (Esc button) won't keep the game paused
+
 # Acknowledgements
 
 * SALT by [MegaPiggy](https://github.com/MegaPiggy/SALT)
