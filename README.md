@@ -28,7 +28,7 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 
 * Download SALT
 * Install SALT as given in the instruction
-* Download SmolTAS.dll from https://github.com/Sh1r0Yaksha/SmolTAS/releases/tag/2.1.2
+* Download SmolTAS.dll from https://www.nexusmods.com/smolame/mods/8
 * After installing, put the SmolTAS.dll file in the folder "SALT/Mods".
 
 # How to Use
@@ -45,6 +45,7 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 * 'F4' sets the timescale value to 1.00, so time will increment normally
 * 'F5' decrements the timescale value by 0.1
 * 'F6' increments the timescale value by 0.1
+* 'F7' sets the timescale value to 10, making the game run at very low FPS (~0).
 * This method is dependent on timescale value so your framerate changes while in slow motion
 * The value of timescale will be visible in the bottom left corner
 
@@ -97,6 +98,11 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 * Fixed issue which created infinite ERROR logs in the console after opening a level
 * Fixed issue which deleted the previous input files when the game opened
 * Now exiting the menu (Esc button) won't keep the game paused
+
+# v2.2.0
+* Optimized the code a little bit
+* Slow mo will work in real time now, no neeed to pause and resume the game
+* Pressing 'F7' will change the timescale value to 10, making the FPS drop to nearly 0
 
 # Acknowledgements
 
