@@ -7,20 +7,16 @@ using System.Reflection;
 
 namespace SmolTAS
 {
-    class SaveAndLoadPos
+    public class SaveAndLoadPos
     {
-        public bool isSaveAndLoadPosOn = true; // Boolean for toggling this mod
+        public static bool isSaveAndLoadPosOn { get; set; } = true; // Boolean for toggling this mod
 
-        private Vector3 savedPlayerPosition = Vector3.zero; // Field for storing player position
+        private static Vector3 savedPlayerPosition = Vector3.zero; // Field for storing player position
 
-        private float savedLevelTime; // Field for saving the time of save
-
-
-        // Constructor for this class
-        public SaveAndLoadPos() { }
+        private static float savedLevelTime; // Field for saving the time of save
 
         // Method to save player position
-        public void SavePos(KeyCode keyPressed)
+        public static void SavePos(KeyCode keyPressed)
         {
             if (keyPressed == KeyCode.F10 && isSaveAndLoadPosOn)
             {
@@ -33,7 +29,7 @@ namespace SmolTAS
         }
 
         // Method to load player position along with camera position
-        public void LoadPos(KeyCode keyPressed)
+        public static void LoadPos(KeyCode keyPressed)
         {
             if (keyPressed == KeyCode.F11 && isSaveAndLoadPosOn)
             {

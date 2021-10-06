@@ -10,22 +10,21 @@ using TMPro;
 
 namespace SmolTAS
 {
-    class OnScreenText
+    public class OnScreenText
     {
-        public GameObject coordinateText = null; // Create coordinate text's gameobject
-        public bool isCoordTextOn = true; // boolean to toggle coordinate and velocity text on or off
+        public static GameObject coordinateText = null; // Create coordinate text's gameobject
+        public static bool isCoordTextOn { get; set; } = true; // boolean to toggle coordinate and velocity text on or off
 
-        public GameObject modEnabledText = null; // Create mods enabled/disabled text's gameobject
+        public static GameObject modEnabledText = null; // Create mods enabled/disabled text's gameobject
 
-        public GameObject timeScaleValuesText = null; // Create Time Scale value text's gameobject
-
-        public bool isTimeScaleTextOn = true; // boolean to toggle time scale text on or off
+        public static GameObject timeScaleValuesText = null; // Create Time Scale value text's gameobject
+        public static bool isTimeScaleTextOn { get; set; } = true; // boolean to toggle time scale text on or off
         
 
         public OnScreenText() { } // Constructor for this class
 
         // Method for creating coordinates text as a game object
-        public void CreateCoordinateAndVelocityText()
+        public static void CreateCoordinateAndVelocityText()
         {
             RectTransform coordinates = UnityEngine.Object.FindObjectsOfType<RectTransform>().FirstOrDefault(tmp => tmp.gameObject.name == "coordinates");
             if (coordinates == null)
@@ -53,7 +52,7 @@ namespace SmolTAS
         }
 
         // Method for creating mods enabled text as a game object
-        public void CreateModsText()
+        public static void CreateModsText()
         {
             RectTransform modsText = UnityEngine.Object.FindObjectsOfType<RectTransform>().FirstOrDefault(tmp => tmp.gameObject.name == "modsenabledtext");
             if (modsText == null)
@@ -82,7 +81,7 @@ namespace SmolTAS
         }
 
         // Method for Time scale value text as a game object
-        public void CreateTimeScaleValueText()
+        public static void CreateTimeScaleValueText()
         {
             RectTransform timeScaleText = UnityEngine.Object.FindObjectsOfType<RectTransform>().FirstOrDefault(tmp => tmp.gameObject.name == "timescaletext");
             if (timeScaleText == null)
@@ -112,7 +111,7 @@ namespace SmolTAS
         }
 
         // Method to show velocity text on screen
-        public void CoordinateAndVelocityTextShow()
+        public static void CoordinateAndVelocityTextShow()
         {
             // Reflections magic
             PlayerScript dummyPlayer = SALT.Main.actualPlayer;
@@ -132,7 +131,7 @@ namespace SmolTAS
         }
 
         // Prints Enabled for True and Disabled for False
-        public string EnabledDisabledText(bool temp)
+        public static string EnabledDisabledText(bool temp)
         {
             if (temp)
                 return "Enabled";

@@ -5,19 +5,16 @@ using UnityEngine;
 
 namespace SmolTAS
 {
-    class SlowMo
+    public class SlowMo
     {
-        public bool isSlowMoOn = true; // Boolean for toggling this mod
-        
-        public float valueForTimeScale = 1f; // Field for timescale value
-       
-        public float deltaTime = Time.deltaTime; // Field for storing delta time of the moment
+        public static bool isSlowMoOn { get; set; } = true; // Boolean for toggling this mod
 
-        // Constructor for this class
-        public SlowMo() { }
+        public static float valueForTimeScale { get; set; } = 1f; // Property for timescale value
+
+        private static float deltaTime = Time.deltaTime; // Field for storing delta time of the moment
 
         // Method that sets the value of timescale
-        public void SetTimescaleValue(KeyCode pressedKey)
+        public static void SetTimescaleValue(KeyCode pressedKey)
         {
             if (isSlowMoOn)
             {
@@ -38,7 +35,10 @@ namespace SmolTAS
                 }
 
                 if (pressedKey == KeyCode.F6)
-                    valueForTimeScale += 0.1f;                
+                    valueForTimeScale += 0.1f;
+
+                if (pressedKey == KeyCode.F7)
+                    valueForTimeScale = 10f;
             }
         }
     }

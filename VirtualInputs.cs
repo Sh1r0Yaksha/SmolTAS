@@ -9,10 +9,8 @@ using System.ComponentModel;
 
 namespace SmolTAS
 {
-    class VirtualInputs
+    public class VirtualInputs
     {
-        public VirtualInputs() { }
-
         // Keyboard Input Struct
         [StructLayout(LayoutKind.Sequential)]
         public struct KeyboardInput
@@ -111,7 +109,7 @@ namespace SmolTAS
 
 
         // Inputs for Pressing W
-        Input[] WPressed = new Input[]
+        private static Input[] WPressed = new Input[]
         {
             new Input
             {
@@ -130,7 +128,7 @@ namespace SmolTAS
         };
 
         // Inputs for Releasing W
-        Input[] WReleased = new Input[]
+        private static Input[] WReleased = new Input[]
         {
             new Input
             {
@@ -149,7 +147,7 @@ namespace SmolTAS
         };
 
         // Inputs for Pressing A
-        Input[] APressed = new Input[]
+        private static Input[] APressed = new Input[]
         {
             new Input
             {
@@ -168,7 +166,7 @@ namespace SmolTAS
         };
 
         // Inputs for Releasing A
-        Input[] AReleased = new Input[]
+        private static Input[] AReleased = new Input[]
         {
             new Input
             {
@@ -187,7 +185,7 @@ namespace SmolTAS
         };
 
         // Inputs for Pressing S
-        Input[] SPressed = new Input[]
+        private static Input[] SPressed = new Input[]
         {
             new Input
             {
@@ -206,7 +204,7 @@ namespace SmolTAS
         };
 
         // Inputs for Releasing S
-        Input[] SReleased = new Input[]
+        private static Input[] SReleased = new Input[]
         {
             new Input
             {
@@ -225,7 +223,7 @@ namespace SmolTAS
         };
 
         // Inputs for Pressing D
-        Input[] DPressed = new Input[]
+        private static Input[] DPressed = new Input[]
         {
             new Input
             {
@@ -244,7 +242,7 @@ namespace SmolTAS
         };
 
         // Inputs for Releasing D
-        Input[] DReleased = new Input[]
+        private static Input[] DReleased = new Input[]
         {
             new Input
             {
@@ -263,7 +261,7 @@ namespace SmolTAS
         };
 
         // Inputs for Pressing UP
-        Input[] UpPressed = new Input[]
+        private static Input[] UpPressed = new Input[]
         {
             new Input
             {
@@ -282,7 +280,7 @@ namespace SmolTAS
         };
 
         // Inputs for Releasing UP
-        Input[] UpReleased = new Input[]
+        private static Input[] UpReleased = new Input[]
         {
             new Input
             {
@@ -301,7 +299,7 @@ namespace SmolTAS
         };
 
         // Inputs for Pressing DOWN
-        Input[] DownPressed = new Input[]
+        private static Input[] DownPressed = new Input[]
         {
             new Input
             {
@@ -320,7 +318,7 @@ namespace SmolTAS
         };
 
         // Inputs for Releasing DOWN
-        Input[] DownReleased = new Input[]
+        private static Input[] DownReleased = new Input[]
         {
             new Input
             {
@@ -339,7 +337,7 @@ namespace SmolTAS
         };
 
         // Inputs for Pressing LEFT
-        Input[] LeftPressed = new Input[]
+        private static Input[] LeftPressed = new Input[]
         {
             new Input
             {
@@ -358,7 +356,7 @@ namespace SmolTAS
         };
 
         // Inputs for Releasing LEFT
-        Input[] LeftReleased = new Input[]
+        private static Input[] LeftReleased = new Input[]
         {
             new Input
             {
@@ -377,7 +375,7 @@ namespace SmolTAS
         };
 
         // Inputs for Pressing RIGHT
-        Input[] RightPressed = new Input[]
+        private static Input[] RightPressed = new Input[]
         {
             new Input
             {
@@ -396,7 +394,7 @@ namespace SmolTAS
         };
 
         // Inputs for Releasing RIGHT
-        Input[] RightReleased = new Input[]
+        private static Input[] RightReleased = new Input[]
         {
             new Input
             {
@@ -415,82 +413,82 @@ namespace SmolTAS
         };
 
         //Methods for pressing keys start
-        public void SendWPressed()
+        public static void SendWPressed()
         {
             SendInput((uint)WPressed.Length, WPressed, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendWReleased()
+        public static void SendWReleased()
         {
             SendInput((uint)WReleased.Length, WReleased, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendAPressed()
+        public static void SendAPressed()
         {
             SendInput((uint)APressed.Length, APressed, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendAReleased()
+        public static void SendAReleased()
         {
             SendInput((uint)AReleased.Length, AReleased, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendSPressed()
+        public static void SendSPressed()
         {
             SendInput((uint)SPressed.Length, SPressed, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendSReleased()
+        public static void SendSReleased()
         {
             SendInput((uint)SReleased.Length, SReleased, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendDPressed()
+        public static void SendDPressed()
         {
             SendInput((uint)DPressed.Length, DPressed, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendDReleased()
+        public static void SendDReleased()
         {
             SendInput((uint)DReleased.Length, DReleased, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendUpPressed()
+        public static void SendUpPressed()
         {
             SendInput((uint)UpPressed.Length, UpPressed, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendUpReleased()
+        public static void SendUpReleased()
         {
             SendInput((uint)UpReleased.Length, UpReleased, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendDownPressed()
+        public static void SendDownPressed()
         {
             SendInput((uint)DownPressed.Length, DownPressed, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendDownReleased()
+        public static void SendDownReleased()
         {
             SendInput((uint)DownReleased.Length, DownReleased, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendLeftPressed()
+        public static void SendLeftPressed()
         {
             SendInput((uint)LeftPressed.Length, LeftPressed, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendLeftReleased()
+        public static void SendLeftReleased()
         {
             SendInput((uint)LeftReleased.Length, LeftReleased, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendRightPressed()
+        public static void SendRightPressed()
         {
             SendInput((uint)RightPressed.Length, RightPressed, Marshal.SizeOf(typeof(Input)));
         }
 
-        public void SendRightReleased()
+        public static void SendRightReleased()
         {
             SendInput((uint)RightReleased.Length, RightReleased, Marshal.SizeOf(typeof(Input)));
         }

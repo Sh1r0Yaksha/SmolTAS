@@ -13,18 +13,6 @@ namespace SmolTAS
 {
     public class Main : ModEntryPoint
     {
-        SlowMo slowMo = new SlowMo(); // Call SlowMo class
-
-        PauseAndResume pauseAndResume = new PauseAndResume(); // Call Pause and Resume Class
-
-        FrameAdvance frameAdvance = new FrameAdvance(); //Call Frame Advance class
-
-        SaveAndLoadPos saveAndLoadPos = new SaveAndLoadPos(); // Call Save and load position mod
-
-        OnScreenText onScreenText = new OnScreenText(); // Call OnScreenText Class
-
-        RegisterInputFromFile registerInput = new RegisterInputFromFile(); // Call RegisterInputFromFile Class 
-
         int i = 0; // integer which runs the file's lines
 
         // THE EXECUTING ASSEMBLY
@@ -39,7 +27,7 @@ namespace SmolTAS
             execAssembly = Assembly.GetExecutingAssembly();
             HarmonyInstance.PatchAll(execAssembly);
             if (!File.Exists(SALT.FileSystem.GetMyPath() + "\\Inputs\\HCH.txt"))
-                registerInput.CreateTextFile();
+                RegisterInputFromFile.CreateTextFile();
         }
 
 
@@ -54,10 +42,10 @@ namespace SmolTAS
             SALT.Callbacks.OnMainMenuLoaded += this.OnMainMenuLoaded;
 
             // Calling coordinates text and mod text method to create the game object
-            onScreenText.CreateCoordinateAndVelocityText();
-            onScreenText.CreateModsText();
-            onScreenText.CreateTimeScaleValueText();
-            registerInput.ReadFiles(Level.MAIN_MENU);
+            OnScreenText.CreateCoordinateAndVelocityText();
+            OnScreenText.CreateModsText();
+            OnScreenText.CreateTimeScaleValueText();
+            RegisterInputFromFile.ReadFiles(Level.MAIN_MENU);
 
         }
 
@@ -65,7 +53,6 @@ namespace SmolTAS
         // Used for editing existing assets in the game, not a registry step
         public override void PostLoad()
         {
-
         }
         
         // Called after every game frame
@@ -73,7 +60,7 @@ namespace SmolTAS
         {
             ModstoggleText();
             TimeScaleValuePrint();
-            onScreenText.CoordinateAndVelocityTextShow();       
+            OnScreenText.CoordinateAndVelocityTextShow();           
         }
 
   
@@ -82,8 +69,13 @@ namespace SmolTAS
         {
             if (RegisterInputFromFile.recordedInputsList.Count > 2)
             {
-                registerInput.DoInputs(i);
+                RegisterInputFromFile.DoInputs(i);
                 i++;
+            }
+
+            if (!MainScript.paused && !PauseAndResume.LShiftPaused)
+            {
+                Time.timeScale = SlowMo.valueForTimeScale;
             }
         }
 
@@ -91,8 +83,8 @@ namespace SmolTAS
         void OnLevelLoaded()
         { 
             i = 0;
-            registerInput.ResetInputs();
-            registerInput.ReadFiles(Levels.CurrentLevel);
+            RegisterInputFromFile.ResetInputs();
+            RegisterInputFromFile.ReadFiles(Levels.CurrentLevel);
             SALT.Main.StopSave();
         }
 
@@ -100,8 +92,8 @@ namespace SmolTAS
         void OnMainMenuLoaded()
         {
             i = 0;
-            registerInput.ResetInputs();
-            registerInput.ReadFiles(0);
+            RegisterInputFromFile.ResetInputs();
+            RegisterInputFromFile.ReadFiles(0);
         }
 
 
@@ -111,10 +103,17 @@ namespace SmolTAS
 
             // Pausing and resuming keys start
             if (inputObject.keyCode == KeyCode.Q)
-                pauseAndResume.ResumeGame(slowMo.valueForTimeScale);
+            {
+                PauseAndResume.ResumeGame(SlowMo.valueForTimeScale);
+                PauseAndResume.LShiftPaused = false;
+            }
 
             if (inputObject.keyCode == KeyCode.LeftShift)
-                pauseAndResume.PauseGame();
+            {
+                PauseAndResume.PauseGame();
+                PauseAndResume.LShiftPaused = true;
+            }
+            
             // Pausing and resuming keys end
 
             // toggling mods start
@@ -122,56 +121,56 @@ namespace SmolTAS
             // Slow Mo mod toggle
             if (inputObject.keyCode == KeyCode.Alpha1)
             {
-                if (slowMo.isSlowMoOn)
+                if (SlowMo.isSlowMoOn)
                 {
-                    slowMo.isSlowMoOn = false;
-                    onScreenText.isTimeScaleTextOn = false;
+                    SlowMo.isSlowMoOn = false;
+                    OnScreenText.isTimeScaleTextOn = false;
                 }
                 else
                 {
-                    slowMo.isSlowMoOn = true;
-                    onScreenText.isTimeScaleTextOn = true;
+                    SlowMo.isSlowMoOn = true;
+                    OnScreenText.isTimeScaleTextOn = true;
                 }
             }
 
             //Frame Advance mod toggle
             if (inputObject.keyCode == KeyCode.Alpha2)
-                frameAdvance.isFrameAdvanceOn = !frameAdvance.isFrameAdvanceOn;
+                FrameAdvance.isFrameAdvanceOn = !FrameAdvance.isFrameAdvanceOn;
 
             //Save and load Position toggle
             if (inputObject.keyCode == KeyCode.Alpha3)
-                saveAndLoadPos.isSaveAndLoadPosOn = !saveAndLoadPos.isSaveAndLoadPosOn;
+                SaveAndLoadPos.isSaveAndLoadPosOn = !SaveAndLoadPos.isSaveAndLoadPosOn;
 
             // Coordinates text toggle
             if (inputObject.keyCode == KeyCode.BackQuote)
             {
-                if (onScreenText.isCoordTextOn)
+                if (OnScreenText.isCoordTextOn)
                 {
-                    onScreenText.isCoordTextOn = false;
-                    onScreenText.isTimeScaleTextOn = false;
+                    OnScreenText.isCoordTextOn = false;
+                    OnScreenText.isTimeScaleTextOn = false;
                 }
                 else
                 {
-                    onScreenText.isCoordTextOn = true;
-                    onScreenText.isTimeScaleTextOn = true;
+                    OnScreenText.isCoordTextOn = true;
+                    OnScreenText.isTimeScaleTextOn = true;
                 }
             }
             // Toggling mods end
 
             // Slow Mo class start
-            slowMo.SetTimescaleValue(inputObject.keyCode);
-            if (inputObject.keyCode == KeyCode.E && slowMo.isSlowMoOn && SALT.Timer.IsPaused() && !MainScript.paused)
-                Time.timeScale = slowMo.valueForTimeScale;
+            SlowMo.SetTimescaleValue(inputObject.keyCode);
+            if (inputObject.keyCode == KeyCode.E && SlowMo.isSlowMoOn && SALT.Timer.IsPaused() && !MainScript.paused)
+                Time.timeScale = SlowMo.valueForTimeScale;
             // Slow Mo class end
 
             // Frame Advance class start
             if (inputObject.keyCode == KeyCode.F)
-                frameAdvance.FrameAdvanceMethod();
+                FrameAdvance.FrameAdvanceMethod();
             // Frame Advance class end
 
             // Save and load position class start
-            saveAndLoadPos.SavePos(inputObject.keyCode);
-            saveAndLoadPos.LoadPos(inputObject.keyCode);
+            SaveAndLoadPos.SavePos(inputObject.keyCode);
+            SaveAndLoadPos.LoadPos(inputObject.keyCode);
             //Save and load position class end
         }
 
@@ -179,28 +178,28 @@ namespace SmolTAS
         public void InputEnded(UserInputService.InputObject inputObject, bool wasProcessed)
         {
             // Slow Mo class start
-            if (inputObject.keyCode == KeyCode.E && slowMo.isSlowMoOn && !MainScript.paused)
-                pauseAndResume.PauseGame();
+            if (inputObject.keyCode == KeyCode.E && SlowMo.isSlowMoOn && !MainScript.paused)
+                PauseAndResume.PauseGame();
             // Slow Mo class end
         }
 
         // Prints Mods Enabled or Disabled Text
         public void ModstoggleText()
         {
-            onScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().text = "Slow-Mo: " + onScreenText.EnabledDisabledText(slowMo.isSlowMoOn) + 
-                "\nFrame Advance: " + onScreenText.EnabledDisabledText(frameAdvance.isFrameAdvanceOn) +
-              "\nSave And load: " + onScreenText.EnabledDisabledText(saveAndLoadPos.isSaveAndLoadPosOn);
+            OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().text = "Slow-Mo: " + OnScreenText.EnabledDisabledText(SlowMo.isSlowMoOn) + 
+                "\nFrame Advance: " + OnScreenText.EnabledDisabledText(FrameAdvance.isFrameAdvanceOn) +
+              "\nSave And load: " + OnScreenText.EnabledDisabledText(SaveAndLoadPos.isSaveAndLoadPosOn);
         }
 
         // Prints Time Scale Value text
         public void TimeScaleValuePrint()
         {
-            if (onScreenText.isTimeScaleTextOn)
-                onScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text ="Current frame: "+ Time.frameCount + 
+            if (OnScreenText.isTimeScaleTextOn)
+                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text ="Current frame: "+ Time.frameCount + 
                     "\nline on text file: " + i +
-                    "\nTimescale value: " + slowMo.valueForTimeScale;
+                    "\nTimescale value: " + SlowMo.valueForTimeScale;
             else
-                onScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = " ";
+                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = " ";
         }
     }
 
