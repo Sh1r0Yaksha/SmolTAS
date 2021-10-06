@@ -8,37 +8,23 @@ using UnityEngine;
 
 namespace SmolTAS
 {
-    class PauseAndResume
+    public class PauseAndResume
     {        
-        public static bool isSlowMoOn = true; // Boolean for toggling this mod
-
-        public float deltaTimeValue; // To set F2 value to delta time
-
-        // Constructor for this class
-        public PauseAndResume() { }
+        public static bool LShiftPaused { get; set; }
 
         // Pause game method
-        public void PauseGame()
+        public static void PauseGame()
         {
-            if (Time.deltaTime > 0.0001f)
-                deltaTimeValue = Time.deltaTime;
-
-
             SALT.Timer.Pause(true);
             UserInputService.MouseVisible = false;
             SALT.Main.StopSave();
         }
 
         // Resume Game method
-        public void ResumeGame( float valueForTimeScale)
+        public static void ResumeGame( float valueForTimeScale)
         {
             if (!MainScript.paused)
-            {
-                if (isSlowMoOn)
-                    Time.timeScale = valueForTimeScale;
-                else
-                    SALT.Timer.Unpause(true);
-            }
+                Time.timeScale = valueForTimeScale;
         }
     }
 }

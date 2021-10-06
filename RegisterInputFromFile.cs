@@ -12,29 +12,26 @@ namespace SmolTAS
 {
     public class RegisterInputFromFile
     {
-        public RegisterInputFromFile() { } //Constructor
-
-        VirtualInputs virtualInputs = new VirtualInputs(); //Caliing VirtualInputs class
 
         // Booleans to check key presses
-        private bool isDpressed = false; 
-        private bool isWpressed = false;
-        private bool isApressed = false;
-        private bool isSpressed = false;
-        private bool isUpPressed = false;
-        private bool isDownPressed = false;
+        private static bool isDpressed = false; 
+        private static bool isWpressed = false;
+        private static bool isApressed = false;
+        private static bool isSpressed = false;
+        private static bool isUpPressed = false;
+        private static bool isDownPressed = false;
 
         // Each line of the file is stored as a string
 
         public static List<string> recordedInputsList { get; set; }
 
         // Inputs folder in SALT\Mods folder
-        private string Inputs => FileSystem.GetMyPath() + "\\Inputs";
+        private static string Inputs => FileSystem.GetMyPath() + "\\Inputs";
 
-        private readonly string[] empty = { string.Empty };
+        private static readonly string[] empty = { string.Empty };
 
         // Creates a file in SALT\Mods folder
-        public void CreateTextFile()
+        public static void CreateTextFile()
         {
             if (!Directory.Exists(Inputs))
                 Directory.CreateDirectory(Inputs);
@@ -56,7 +53,7 @@ namespace SmolTAS
         }
 
         // Reads from a file named AO.txt in SALT\Mods folder
-        public void ReadFiles(Level level)
+        public static void ReadFiles(Level level)
         {
             if (!Directory.Exists(Inputs))
                 Directory.CreateDirectory(Inputs);
@@ -127,7 +124,7 @@ namespace SmolTAS
             recordedInputsList = temp.ToList();
         }
 
-        public void ResetInputs()
+        public static void ResetInputs()
         {
             isWpressed = false;
             isApressed = false;
@@ -139,75 +136,75 @@ namespace SmolTAS
 
 
         // Method which checks which characters are in the text file and presses corresponding keys
-        public void DoInputs(int i)
+        public static void DoInputs(int i)
         {
             if (recordedInputsList != null)
             {
                 if (recordedInputsList[i].Contains('D') && !isDpressed)
                 {
                     isDpressed = true;
-                    virtualInputs.SendDPressed();
+                    VirtualInputs.SendDPressed();
                 }
                 if (!recordedInputsList[i].Contains('D') && isDpressed)
                 {
                     isDpressed = false;
-                    virtualInputs.SendDPressed();
-                    virtualInputs.SendDReleased();
+                    VirtualInputs.SendDPressed();
+                    VirtualInputs.SendDReleased();
                 }
                 if (recordedInputsList[i].Contains('W') && !isWpressed)
                 {
                     isWpressed = true;
-                    virtualInputs.SendWPressed();
+                    VirtualInputs.SendWPressed();
                 }
                 if (!recordedInputsList[i].Contains('W') && isWpressed)
                 {
                     isWpressed = false;
-                    virtualInputs.SendWPressed();
-                    virtualInputs.SendWReleased();
+                    VirtualInputs.SendWPressed();
+                    VirtualInputs.SendWReleased();
                 }
                 if (recordedInputsList[i].Contains('A') && !isApressed)
                 {
                     isApressed = true;
-                    virtualInputs.SendAPressed();
+                    VirtualInputs.SendAPressed();
                 }
                 if (!recordedInputsList[i].Contains('A') && isApressed)
                 {
                     isApressed = false;
-                    virtualInputs.SendAPressed();
-                    virtualInputs.SendAReleased();
+                    VirtualInputs.SendAPressed();
+                    VirtualInputs.SendAReleased();
                 }
                 if (recordedInputsList[i].Contains('S') && !isSpressed)
                 {
                     isSpressed = true;
-                    virtualInputs.SendSPressed();
+                    VirtualInputs.SendSPressed();
                 }
                 if (!recordedInputsList[i].Contains('S') && isSpressed)
                 {
                     isSpressed = false;
-                    virtualInputs.SendSPressed();
-                    virtualInputs.SendSReleased();
+                    VirtualInputs.SendSPressed();
+                    VirtualInputs.SendSReleased();
                 }
                 if (recordedInputsList[i].Contains('J') && !isUpPressed)
                 {
                     isUpPressed = true;
-                    virtualInputs.SendUpPressed();
+                    VirtualInputs.SendUpPressed();
                 }
                 if (!recordedInputsList[i].Contains('J') && isUpPressed)
                 {
                     isUpPressed = false;
-                    virtualInputs.SendUpPressed();
-                    virtualInputs.SendUpReleased();
+                    VirtualInputs.SendUpPressed();
+                    VirtualInputs.SendUpReleased();
                 }
                 if (recordedInputsList[i].Contains('G') && !isDownPressed)
                 {
                     isDownPressed = true;
-                    virtualInputs.SendDownPressed();
+                    VirtualInputs.SendDownPressed();
                 }
                 if (!recordedInputsList[i].Contains('G') && isDownPressed)
                 {
                     isDownPressed = false;
-                    virtualInputs.SendDownPressed();
-                    virtualInputs.SendDownReleased();
+                    VirtualInputs.SendDownPressed();
+                    VirtualInputs.SendDownReleased();
                 }
             }
         }
