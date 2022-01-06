@@ -71,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FixedFrameRate.cs" />
     <Compile Include="FrameAdvance.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="OnScreenText.cs" />

@@ -14,10 +14,8 @@ namespace SmolTAS
     public class Main : ModEntryPoint
     {
         int i = 0; // integer which runs the file's lines
-
         // THE EXECUTING ASSEMBLY
         public static Assembly execAssembly;
-        
 
         // Called before MainScript.Awake
         // You want to register new things and enum values here, as well as do all your harmony patching
@@ -47,6 +45,10 @@ namespace SmolTAS
             OnScreenText.CreateTimeScaleValueText();
             RegisterInputFromFile.ReadFiles(Level.MAIN_MENU);
 
+            GameObject fixedFrameRateObject = new GameObject();
+            FixedFrameRate fixedFrameRate = new FixedFrameRate();
+            fixedFrameRateObject.AddComponent(fixedFrameRate);
+
         }
 
         // Called after all mods Load's have been called
@@ -60,7 +62,7 @@ namespace SmolTAS
         {
             ModstoggleText();
             TimeScaleValuePrint();
-            OnScreenText.CoordinateAndVelocityTextShow();           
+            OnScreenText.CoordinateAndVelocityTextShow();            
         }
 
   
@@ -85,7 +87,11 @@ namespace SmolTAS
             i = 0;
             RegisterInputFromFile.ResetInputs();
             RegisterInputFromFile.ReadFiles(Levels.CurrentLevel);
-            SALT.Main.StopSave();
+            GC.Collect();
+
+            GameObject fixedFrameRateObject = new GameObject();
+            FixedFrameRate fixedFrameRate = new FixedFrameRate();
+            fixedFrameRateObject.AddComponent(fixedFrameRate);  
         }
 
         // Called after the main hub is loaded
@@ -94,6 +100,11 @@ namespace SmolTAS
             i = 0;
             RegisterInputFromFile.ResetInputs();
             RegisterInputFromFile.ReadFiles(0);
+            GC.Collect();
+
+            GameObject fixedFrameRateObject = new GameObject();
+            FixedFrameRate fixedFrameRate = new FixedFrameRate();
+            fixedFrameRateObject.AddComponent(fixedFrameRate);
         }
 
 
