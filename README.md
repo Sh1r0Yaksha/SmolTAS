@@ -24,6 +24,9 @@ This mod displays the values of coordinates and Velocities of the player in X an
 ### Input Recording
 This mod lets people write inputs as WASD in a text file and the game will replicate those inputs frame by frame
 
+### Fixed Frame Rate
+The game will now run at a fixed framerate of 200fps for precise input recordings
+
 # How to install
 
 * Download SALT
@@ -79,6 +82,10 @@ This mod lets people write inputs as WASD in a text file and the game will repli
 * Leave a few lines blank after the inputs so that every key is released (Else some keys can remain held)
 
 # Update logs
+
+# v3.0.0
+* Solved the varying framerate issue, now the game will run at a fixed framerate of 200fps
+* With this update, this mod can be used for TASing purposes in every level without any issues
 
 # v2.0.1
 * Added text at the bottom left showing how many game frames have passed and which line the code is currently on when playing inputs
