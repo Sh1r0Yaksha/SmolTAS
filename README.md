@@ -1,5 +1,5 @@
 # SmolTAS
-A mod for Smol Ame game which can help make tool assisted speedruns (TAS) for the game, it is still in development. Requires SALT to work
+A mod for Smol Ame game which can help make tool assisted speedruns (TAS) for the game, it is mostly developed, TAS runs can be made with it. Requires SALT to work
 
 # Mods
 This single mod at this moment contains 3 different mods
@@ -82,6 +82,11 @@ The game will now run at a fixed framerate of 200fps for precise input recording
 * Leave a few lines blank after the inputs so that every key is released (Else some keys can remain held)
 
 # Update logs
+
+# v3.1.0
+* Shows Inputs read from text file on screen below timescale value
+* Colour of texts shown in this mod is changed to white with black outline
+* Positioning of Timescale value text is slightly modified
 
 # v3.0.0
 * Solved the varying framerate issue, now the game will run at a fixed framerate of 200fps
