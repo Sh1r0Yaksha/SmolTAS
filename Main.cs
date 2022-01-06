@@ -13,9 +13,9 @@ namespace SmolTAS
 {
     public class Main : ModEntryPoint
     {
-        int i = 0; // integer which runs the file's lines
         // THE EXECUTING ASSEMBLY
         public static Assembly execAssembly;
+        int i = 0; // integer which runs the file's lines
 
         // Called before MainScript.Awake
         // You want to register new things and enum values here, as well as do all your harmony patching
@@ -45,6 +45,7 @@ namespace SmolTAS
             OnScreenText.CreateTimeScaleValueText();
             RegisterInputFromFile.ReadFiles(Level.MAIN_MENU);
 
+            // Creating a gameobject that runs the FixedFrameRate class
             GameObject fixedFrameRateObject = new GameObject();
             FixedFrameRate fixedFrameRate = new FixedFrameRate();
             fixedFrameRateObject.AddComponent(fixedFrameRate);
@@ -69,7 +70,7 @@ namespace SmolTAS
         // Called after every game physics frame (200fps)
         public override void FixedUpdate()
         {
-            if (RegisterInputFromFile.recordedInputsList.Count > 2)
+            if (RegisterInputFromFile.recordedInputsList.Count > 2 && Time.timeScale != 0)
             {
                 RegisterInputFromFile.DoInputs(i);
                 i++;
@@ -89,6 +90,7 @@ namespace SmolTAS
             RegisterInputFromFile.ReadFiles(Levels.CurrentLevel);
             GC.Collect();
 
+            // Creating a gameobject that runs the FixedFrameRate class
             GameObject fixedFrameRateObject = new GameObject();
             FixedFrameRate fixedFrameRate = new FixedFrameRate();
             fixedFrameRateObject.AddComponent(fixedFrameRate);  
@@ -102,6 +104,7 @@ namespace SmolTAS
             RegisterInputFromFile.ReadFiles(0);
             GC.Collect();
 
+            // Creating a gameobject that runs the FixedFrameRate class
             GameObject fixedFrameRateObject = new GameObject();
             FixedFrameRate fixedFrameRate = new FixedFrameRate();
             fixedFrameRateObject.AddComponent(fixedFrameRate);

@@ -5,8 +5,9 @@ using UnityEngine;
 public class FixedFrameRate : MonoBehaviour
 {
     //public float Rate { get; set; } = 200.0f;
-    public static float Rate { get; set; } = 144.0f;
+    float Rate = 200.0f;
     float currentFrameTime;
+    
 
     void Start()
     {
@@ -28,8 +29,7 @@ public class FixedFrameRate : MonoBehaviour
             if (sleepTime > 0)
                 Thread.Sleep((int)(sleepTime * 1000));
             while (t < currentFrameTime)
-                t = Time.realtimeSinceStartup;
-
+                t = Time.realtimeSinceStartup;     
         }
     }
 }
