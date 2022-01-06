@@ -15,7 +15,7 @@ namespace SmolTAS
     {
         // THE EXECUTING ASSEMBLY
         public static Assembly execAssembly;
-        int i = 0; // integer which runs the file's lines
+        public static int i = 0; // integer which runs the file's lines
 
         // Called before MainScript.Awake
         // You want to register new things and enum values here, as well as do all your harmony patching
@@ -62,8 +62,8 @@ namespace SmolTAS
         public override void Update()
         {
             ModstoggleText();
-            TimeScaleValuePrint();
-            OnScreenText.CoordinateAndVelocityTextShow();            
+            OnScreenText.TimeScaleValueTextShow();
+            OnScreenText.CoordinateAndVelocityTextShow();     
         }
 
   
@@ -203,17 +203,6 @@ namespace SmolTAS
             OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().text = "Slow-Mo: " + OnScreenText.EnabledDisabledText(SlowMo.isSlowMoOn) + 
                 "\nFrame Advance: " + OnScreenText.EnabledDisabledText(FrameAdvance.isFrameAdvanceOn) +
               "\nSave And load: " + OnScreenText.EnabledDisabledText(SaveAndLoadPos.isSaveAndLoadPosOn);
-        }
-
-        // Prints Time Scale Value text
-        public void TimeScaleValuePrint()
-        {
-            if (OnScreenText.isTimeScaleTextOn)
-                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text ="Current frame: "+ Time.frameCount + 
-                    "\nline on text file: " + i +
-                    "\nTimescale value: " + SlowMo.valueForTimeScale;
-            else
-                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = " ";
         }
     }
 

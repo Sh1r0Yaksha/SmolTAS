@@ -14,12 +14,12 @@ namespace SmolTAS
     {
 
         // Booleans to check key presses
-        private static bool isDpressed = false; 
-        private static bool isWpressed = false;
-        private static bool isApressed = false;
-        private static bool isSpressed = false;
-        private static bool isUpPressed = false;
-        private static bool isDownPressed = false;
+        public static bool isDpressed = false; 
+        public static bool isWpressed = false;
+        public static bool isApressed = false;
+        public static bool isSpressed = false;
+        public static bool isUpPressed = false;
+        public static bool isDownPressed = false;
 
         // Each line of the file is stored as a string
 

@@ -2,7 +2,7 @@
   "id": "SmolTAS",
   "name": "SmolTAS",
   "author": "Shir0Yaksha",
-  "description": "A TASing tool for Smol Ame, still in development",
-  "version": "3.0.0",
+  "description": "A TASing tool for Smol Ame",
+  "version": "3.1.0",
   "nosave":  true
 }

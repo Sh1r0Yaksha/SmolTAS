@@ -19,7 +19,7 @@ namespace SmolTAS
 
         public static GameObject timeScaleValuesText = null; // Create Time Scale value text's gameobject
         public static bool isTimeScaleTextOn { get; set; } = true; // boolean to toggle time scale text on or off
-        
+
 
         public OnScreenText() { } // Constructor for this class
 
@@ -49,6 +49,10 @@ namespace SmolTAS
             }
             else if (coordinateText == null)
                 coordinateText = coordinates.gameObject;
+
+            coordinateText.GetComponent<TextMeshProUGUI>().color = Color.white;
+            coordinateText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+            coordinateText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
         }
 
         // Method for creating mods enabled text as a game object
@@ -78,6 +82,10 @@ namespace SmolTAS
             }
             else if (modEnabledText == null)
                 modEnabledText = modsText.gameObject;
+
+            modEnabledText.GetComponent<TextMeshProUGUI>().color = Color.white;
+            modEnabledText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+            modEnabledText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
         }
 
         // Method for Time scale value text as a game object
@@ -92,7 +100,7 @@ namespace SmolTAS
                 versionObject.transform.parent.gameObject.AddChild(timeScaleValueText, false);
                 RectTransform vRT = versionObject.GetComponent<RectTransform>();
                 RectTransform timeScaleRT = timeScaleValueText.GetComponent<RectTransform>().GetCopyOf(vRT);
-                timeScaleRT.SetPivotAndAnchors(new Vector2(2.5f, 4f));
+                timeScaleRT.SetPivotAndAnchors(new Vector2(1.95f, 4f));
                 timeScaleRT.localPosition = vRT.localPosition;
                 timeScaleRT.localScale = vRT.localScale;
                 timeScaleRT.anchoredPosition = vRT.anchoredPosition;
@@ -108,7 +116,12 @@ namespace SmolTAS
             }
             else if (timeScaleValuesText == null)
                 timeScaleValuesText = timeScaleText.gameObject;
-        }
+
+            timeScaleValuesText.GetComponent<TextMeshProUGUI>().color = Color.white;
+            timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+            timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+            timeScaleValuesText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+        }        
 
         // Method to show velocity text on screen
         public static void CoordinateAndVelocityTextShow()
@@ -128,6 +141,31 @@ namespace SmolTAS
 
             else
                 coordinateText.GetComponent<TextMeshProUGUI>().text = " ";
+        }
+
+        // Prints Time Scale Value text
+        public static void TimeScaleValueTextShow()
+        {
+            if (isTimeScaleTextOn)
+            {
+                timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = "Current frame: " + Time.frameCount +
+                    "\nline on text file: " + SmolTAS.Main.i +
+                    "\nTimescale value: " + SlowMo.valueForTimeScale + "\n";
+                if (RegisterInputFromFile.isWpressed)
+                    timeScaleValuesText.GetComponent<TextMeshProUGUI>().text += "W";
+                if (RegisterInputFromFile.isApressed)
+                    timeScaleValuesText.GetComponent<TextMeshProUGUI>().text += "A";
+                if (RegisterInputFromFile.isSpressed)
+                    timeScaleValuesText.GetComponent<TextMeshProUGUI>().text += "S";
+                if (RegisterInputFromFile.isDpressed)
+                    timeScaleValuesText.GetComponent<TextMeshProUGUI>().text += "D";
+                if (RegisterInputFromFile.isUpPressed)
+                    timeScaleValuesText.GetComponent<TextMeshProUGUI>().text += "↑";
+                if (RegisterInputFromFile.isDownPressed)
+                    timeScaleValuesText.GetComponent<TextMeshProUGUI>().text += "↓";
+            }
+            else
+                timeScaleValuesText.GetComponent<TextMeshProUGUI>().text = " ";
         }
 
         // Prints Enabled for True and Disabled for False
