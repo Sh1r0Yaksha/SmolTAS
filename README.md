@@ -2,7 +2,7 @@
 A mod for Smol Ame game which can help make tool assisted speedruns (TAS) for the game, it is mostly developed, TAS runs can be made with it. Requires SALT to work
 
 # Mods
-This single mod at this moment contains 3 different mods
+This single mod at this moment contains 5 different mods
 * [Slow Motion](https://github.com/Sh1r0Yaksha/SmolTAS#slow-motion)
 * [Frame advance](https://github.com/Sh1r0Yaksha/SmolTAS#frame-advance)
 * [Save and Load Position](https://github.com/Sh1r0Yaksha/SmolTAS#save-and-load-position)
