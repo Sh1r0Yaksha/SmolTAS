@@ -30,7 +30,7 @@ namespace SmolTAS
             if (coordinates == null)
             {
                 GameObject versionObject = UnityEngine.Object.FindObjectsOfType<RectTransform>().FirstOrDefault(tmp => tmp.gameObject.name == "Version").gameObject;
-                GameObject coordinatesText = versionObject.CloneInstance();
+                GameObject coordinatesText = versionObject.Instantiate();
                 coordinatesText.name = "coordinatestext";
                 versionObject.transform.parent.gameObject.AddChild(coordinatesText, false);
                 RectTransform vRT = versionObject.GetComponent<RectTransform>();
@@ -62,7 +62,7 @@ namespace SmolTAS
             if (modsText == null)
             {
                 GameObject versionObject = UnityEngine.Object.FindObjectsOfType<RectTransform>().FirstOrDefault(tmp => tmp.gameObject.name == "Version").gameObject;
-                GameObject modsEnabledText = versionObject.CloneInstance();
+                GameObject modsEnabledText = versionObject.Instantiate();
                 modsEnabledText.name = "modsenabledtext";
                 versionObject.transform.parent.gameObject.AddChild(modsEnabledText, false);
                 RectTransform vRT = versionObject.GetComponent<RectTransform>();
@@ -95,7 +95,7 @@ namespace SmolTAS
             if (timeScaleText == null)
             {
                 GameObject versionObject = UnityEngine.Object.FindObjectsOfType<RectTransform>().FirstOrDefault(tmp => tmp.gameObject.name == "Version").gameObject;
-                GameObject timeScaleValueText = versionObject.CloneInstance();
+                GameObject timeScaleValueText = versionObject.Instantiate() ;
                 timeScaleValueText.name = "timescaletext";
                 versionObject.transform.parent.gameObject.AddChild(timeScaleValueText, false);
                 RectTransform vRT = versionObject.GetComponent<RectTransform>();
