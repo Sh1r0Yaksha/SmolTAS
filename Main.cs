@@ -140,14 +140,6 @@ namespace SmolTAS
             OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().color = Color.white;
             OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
             OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
-
-            OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().color = Color.white;
-            OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
-            OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
-
-            OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().color = Color.white;
-            OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
-            OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
         }
 
 
