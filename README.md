@@ -83,6 +83,11 @@ The game will now run at a fixed framerate of 200fps for precise input recording
 
 # Update logs
 
+# v3.1.1
+* Fixed the text shown on the screen by the mod
+* The text will be black in Pekoland, Inascapable madness, Mogu Mogu and Red Heart
+* Other levels and hub will have the same white text
+
 # v3.1.0
 * Shows Inputs read from text file on screen below timescale value
 * Colour of texts shown in this mod is changed to white with black outline
