@@ -49,7 +49,6 @@ namespace SmolTAS
             GameObject fixedFrameRateObject = new GameObject();
             FixedFrameRate fixedFrameRate = new FixedFrameRate();
             fixedFrameRateObject.AddComponent(fixedFrameRate);
-
         }
 
         // Called after all mods Load's have been called
@@ -94,6 +93,35 @@ namespace SmolTAS
             GameObject fixedFrameRateObject = new GameObject();
             FixedFrameRate fixedFrameRate = new FixedFrameRate();
             fixedFrameRateObject.AddComponent(fixedFrameRate);  
+
+            if (Levels.isRedHeart() || Levels.isInascapableMadness() || Levels.isMoguMogu() || Levels.isPekoland())
+            {
+                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().color = Color.black;
+                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineColor = Color.white;
+                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+
+                OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().color = Color.black;
+                OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().outlineColor = Color.white;
+                OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+
+                OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().color = Color.black;
+                OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().outlineColor = Color.white;
+                OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+            }
+            else
+            {
+                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().color = Color.white;
+                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+                OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+
+                OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().color = Color.white;
+                OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+                OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+
+                OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().color = Color.white;
+                OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+                OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+            }
         }
 
         // Called after the main hub is loaded
@@ -108,6 +136,18 @@ namespace SmolTAS
             GameObject fixedFrameRateObject = new GameObject();
             FixedFrameRate fixedFrameRate = new FixedFrameRate();
             fixedFrameRateObject.AddComponent(fixedFrameRate);
+
+            OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().color = Color.white;
+            OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+            OnScreenText.timeScaleValuesText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+
+            OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().color = Color.white;
+            OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+            OnScreenText.coordinateText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
+
+            OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().color = Color.white;
+            OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().outlineColor = Color.black;
+            OnScreenText.modEnabledText.GetComponent<TextMeshProUGUI>().outlineWidth = 0.2f;
         }
 
 
@@ -185,7 +225,7 @@ namespace SmolTAS
             // Save and load position class start
             SaveAndLoadPos.SavePos(inputObject.keyCode);
             SaveAndLoadPos.LoadPos(inputObject.keyCode);
-            //Save and load position class end
+            //Save and load position class end          
         }
 
         // Called after any key is released
